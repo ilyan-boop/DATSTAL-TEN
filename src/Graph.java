@@ -76,4 +76,21 @@ public class Graph {
         }
         return -1;
     }
+
+    public void printGraph(MapManager mapManager) {
+        String[] locations = mapManager.getLocations();
+        IO.println("======= MAP GRAPH (ADJACENCY LIST) =======");
+        for (int i = 0; i < vertexCount; i++) {
+            String line = locations[i] + " -> ";
+            GraphNode current = adjacencyList[i];
+            while (current != null) {
+                line = line + locations[current.destination];
+                if (current.next != null) {
+                    line = line + ", ";
+                }
+                current = current.next;
+            }
+            IO.println(line);
+        }
+    }
 }

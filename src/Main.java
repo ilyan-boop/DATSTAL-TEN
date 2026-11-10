@@ -1,5 +1,6 @@
 void main() {
     MapManager mapManager = new MapManager(10);
+    Graph graph = null;
     boolean running = true;
 
     while (running) {
@@ -23,7 +24,11 @@ void main() {
         switch (choice) {
             case 1:
                 mapManager.loadMap("Locations.txt");
-                IO.println("Map Graph: Cobreros");
+                if (mapManager.isLoaded()) {
+                    graph = new Graph(mapManager.getLocationCount());
+                    graph.buildFromFile("Locations.txt", mapManager);
+                    graph.printGraph(mapManager);
+                }
                 break;
             case 2:
                 mapManager.displayAlphabetical();
