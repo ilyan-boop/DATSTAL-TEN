@@ -63,6 +63,20 @@ public class MapManager {
     }
 
     /*
+    findLocationIndex - performs a linear search through the
+    locations array to find and return the index matching the
+    given place name, or -1 if the place is not found.
+     */
+    public int findLocationIndex(String placeName) {
+        for (int i = 0; i < locationCount; i++) {
+            if (locations[i].equalsIgnoreCase(placeName)) {
+                return i;
+            }
+        }
+        return -1; // Not found
+    }
+
+    /*
     displayAlphabetical - creates a copy of the locations which are
     then sorted via bubble sort algorithm and outputted in the
     console output alphabetically.
