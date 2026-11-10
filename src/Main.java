@@ -34,7 +34,30 @@ void main() {
                 mapManager.displayAlphabetical();
                 break;
             case 3:
-                IO.println("BFS Pathfinding: Cordova");
+                if (!mapManager.isLoaded()) {
+                    IO.println("Error: Please load the map file first (Option 1).");
+                    break;
+                }
+
+                String startPlace = IO.readln("Enter starting place name: ").trim();
+                String destPlace = IO.readln("Enter destination place name: ").trim();
+
+                // Use Linear Search to find indices
+                int startIdx = mapManager.findLocationIndex(startPlace);
+                int destIdx = mapManager.findLocationIndex(destPlace);
+
+                // Error handling for wrong place name
+                if (startIdx == -1) {
+                    IO.println("Error: Starting place '" + startPlace + "' does not exist on the map.");
+                    break;
+                }
+                if (destIdx == -1) {
+                    IO.println("Error: Destination place '" + destPlace + "' does not exist on the map.");
+                    break;
+                }
+
+                // Run BFS pathfinding
+                graph.findPathBFS(startIdx, destIdx, mapManager);
                 break;
             case 4:
                 IO.println("Exiting program. Goodbye!");
