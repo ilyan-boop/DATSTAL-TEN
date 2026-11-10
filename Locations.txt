@@ -1,3 +1,15 @@
-St.LaSalleHall EnriqueYuchengoHall St.JosephHall HenrySySr.Hall VelascoHall
-St.MiguelHall  St.MutienMarieHall GokongweiHall EnriqueRazonSportsCenter
-Br.AndrewGonzalezHall
+St._La_Salle_Hall Enrique_Yuchengo_Hall
+St._La_Salle_Hall St._Joseph_Hall
+St._La_Salle_Hall Henry_Sy_Sr._Hall
+Enrique_Yuchengo_Hall Velasco_Hall
+Enrique_Yuchengo_Hall Gokongwei_Hall
+St._Joseph_Hall St._Miguel_Hall
+St._Joseph_Hall St._Mutien_Marie_Hall
+Henry_Sy_Sr._Hall Br._Andrew_Gonzalez_Hall
+Henry_Sy_Sr._Hall Enrique_Razon_Sports_Center
+Velasco_Hall St._Miguel_Hall
+Velasco_Hall Gokongwei_Hall
+St._Miguel_Hall St._Mutien_Marie_Hall
+St._Mutien_Marie_Hall Enrique_Razon_Sports_Center
+Gokongwei_Hall Br._Andrew_Gonzalez_Hall
+Enrique_Razon_Sports_Center Br._Andrew_Gonzalez_Hall
