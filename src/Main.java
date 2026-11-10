@@ -1,23 +1,43 @@
-import java.util.Queue;
-
 void main() {
-    String[] locations = LocationData.getLocations();
+    MapManager mapManager = new MapManager(10);
+    boolean running = true;
 
-    IO.println("--- Array Example ---");
-    IO.println("Total locations: " + locations.length);
-    IO.println("First location: " + locations[0]);
-    IO.println("Last location: " + locations[locations.length - 1]);
-    IO.println();
+    while (running) {
+        IO.println("1. Load the map file");
+        IO.println("2. Show all locations in A-to-Z order");
+        IO.println("3. Find a path between 2 places (WIP)");
+        IO.println("4. Exit");
+        IO.println("================================================");
 
-    IO.println("--- Queue Example ---");
-    ArrayQueue queue = new ArrayQueue(5);
+        int choice;
+        try {
+            choice = Integer.parseInt(IO.readln("Enter your option: "));
+        } catch (NumberFormatException e) {
+            IO.println("Invalid input.");
+            IO.println();
+            continue;
+        }
 
-    queue.enqueue(0); // St. La Salle Hall
-    queue.enqueue(3); // Henry Sy Sr. Hall
+        IO.println();
 
-    IO.println("Queue size after enqueuing 2 items: " + queue.size());
-
-    IO.println("Dequeued index: " + queue.dequeue());
-    IO.println("Dequeued index: " + queue.dequeue());
-    IO.println("Is queue empty? " + queue.isEmpty());
+        switch (choice) {
+            case 1:
+                mapManager.loadMap("Locations.txt");
+                IO.println("Map Graph: Cobreros");
+                break;
+            case 2:
+                mapManager.displayAlphabetical();
+                break;
+            case 3:
+                IO.println("BFS Pathfinding: Cordova");
+                break;
+            case 4:
+                IO.println("Exiting program. Goodbye!");
+                running = false;
+                break;
+            default:
+                IO.println("Invalid option. Please select an option from 1 to 4.");
+        }
+        IO.println();
+    }
 }
