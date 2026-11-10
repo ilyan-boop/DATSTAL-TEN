@@ -77,6 +77,81 @@ public class Graph {
         return -1;
     }
 
+    /*
+    findPathBFS method - implements the Breadth-First Search (BFS) algorithm
+    using a custom queue to find the shortest path with the fewest stops
+    between a start and destination vertex, handling missing paths and
+    reconstructing the final route.
+     */
+    public void findPathBFS(int startIdx, int targetIdx, MapManager mapManager) {
+        String[] locations = mapManager.getLocations();
+
+        if (startIdx == targetIdx) {
+            IO.println("Start and destination are the same: " + locations[startIdx]);
+            IO.println("Stops: 0");
+            return;
+        }
+
+        boolean[] visited = new boolean[vertexCount];
+        int[] parent = new int[vertexCount];
+        for (int i = 0; i < vertexCount; i++) {
+            parent[i] = -1;
+        }
+
+        ArrayQueue queue = new ArrayQueue(vertexCount);
+        queue.enqueue(startIdx);
+        visited[startIdx] = true;
+
+        boolean found = false;
+
+        while (!queue.isEmpty()) {
+            int current = queue.dequeue();
+
+            if (current == targetIdx) {
+                found = true;
+                break;
+            }
+
+            GraphNode neighborNode = adjacencyList[current];
+            while (neighborNode != null) {
+                int neighbor = neighborNode.destination;
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    parent[neighbor] = current;
+                    queue.enqueue(neighbor);
+                }
+                neighborNode = neighborNode.next;
+            }
+        }
+
+        if (!found) {
+            IO.println("Error: There is no path between " + locations[startIdx] + " and " + locations[targetIdx] + ".");
+            return;
+        }
+
+        //Reconstruct path from target back to start
+        int[] pathStack = new int[vertexCount];
+        int pathLength = 0;
+        int curr = targetIdx;
+        while (curr != -1) {
+            pathStack[pathLength++] = curr;
+            curr = parent[curr];
+        }
+
+        //Print path and number of stops (edges)
+        IO.println("======= PATH FOUND (BFS) =======");
+        String pathStr = "";
+        for (int i = pathLength - 1; i >= 0; i--) {
+            pathStr += locations[pathStack[i]];
+            if (i > 0) {
+                pathStr += " -> ";
+            }
+        }
+
+        IO.println("Path: " + pathStr);
+        IO.println("Number of stops (edges): " + (pathLength - 1));
+    }
+
     public void printGraph(MapManager mapManager) {
         String[] locations = mapManager.getLocations();
         IO.println("======= MAP GRAPH (ADJACENCY LIST) =======");
