@@ -40,7 +40,15 @@ void main() {
                 }
 
                 String startPlace = IO.readln("Enter starting place name: ").trim();
+                if (startPlace.isEmpty()) {
+                    IO.println("Error: Starting place cannot be empty.");
+                    break;
+                }
                 String destPlace = IO.readln("Enter destination place name: ").trim();
+                if (destPlace.isEmpty()) {
+                    IO.println("Error: Destination place cannot be empty.");
+                    break;
+                }
 
                 // Use Linear Search to find indices
                 int startIdx = mapManager.findLocationIndex(startPlace);
