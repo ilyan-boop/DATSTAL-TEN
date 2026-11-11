@@ -68,12 +68,13 @@ public class MapManager {
     given place name, or -1 if the place is not found.
      */
     public int findLocationIndex(String placeName) {
+        String formatted = placeName.trim().replaceAll("\\s+", "_");
         for (int i = 0; i < locationCount; i++) {
-            if (locations[i].equalsIgnoreCase(placeName)) {
+            if (locations[i].equalsIgnoreCase(formatted)) {
                 return i;
             }
         }
-        return -1; // Not found
+        return -1;
     }
 
     /*
