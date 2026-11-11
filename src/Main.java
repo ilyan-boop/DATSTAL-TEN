@@ -6,7 +6,7 @@ void main() {
     while (running) {
         IO.println("1. Load the map file");
         IO.println("2. Show all locations in A-to-Z order");
-        IO.println("3. Find a path between 2 places (WIP)");
+        IO.println("3. Find a path between 2 places");
         IO.println("4. Exit");
         IO.println("================================================");
 
@@ -40,7 +40,15 @@ void main() {
                 }
 
                 String startPlace = IO.readln("Enter starting place name: ").trim();
+                if (startPlace.isEmpty()) {
+                    IO.println("Error: Starting place cannot be empty.");
+                    break;
+                }
                 String destPlace = IO.readln("Enter destination place name: ").trim();
+                if (destPlace.isEmpty()) {
+                    IO.println("Error: Destination place cannot be empty.");
+                    break;
+                }
 
                 // Use Linear Search to find indices
                 int startIdx = mapManager.findLocationIndex(startPlace);
@@ -49,10 +57,12 @@ void main() {
                 // Error handling for wrong place name
                 if (startIdx == -1) {
                     IO.println("Error: Starting place '" + startPlace + "' does not exist on the map.");
+                    mapManager.printValidLocations();
                     break;
                 }
                 if (destIdx == -1) {
                     IO.println("Error: Destination place '" + destPlace + "' does not exist on the map.");
+                    mapManager.printValidLocations();
                     break;
                 }
 

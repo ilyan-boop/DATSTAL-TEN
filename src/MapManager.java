@@ -32,9 +32,18 @@ public class MapManager {
                 if (parts.length >= 2) {
                     addLocation(parts[0]);
                     addLocation(parts[1]);
+                } else {
+                    IO.println("Warning: Skipping malformed line: " + line);
                 }
             }
             scanner.close();
+
+            if (locationCount == 0) {
+                IO.println("Error: The map file has no valid locations.");
+                isLoaded = false;
+                return;
+            }
+
             isLoaded = true;
             IO.println("Map file loaded successfully! Total unique "
                     + "locations found: " + locationCount);
@@ -59,6 +68,9 @@ public class MapManager {
         if (locationCount < locations.length) {
             locations[locationCount] = place;
             locationCount++;
+        } else {
+            IO.println("Warning: Map is full (" + locations.length
+                    + " locations). Could not add: " + place);
         }
     }
 
@@ -68,8 +80,9 @@ public class MapManager {
     given place name, or -1 if the place is not found.
      */
     public int findLocationIndex(String placeName) {
+        String formatted = placeName.trim().replaceAll("\\s+", "_");
         for (int i = 0; i < locationCount; i++) {
-            if (locations[i].equalsIgnoreCase(placeName)) {
+            if (locations[i].equalsIgnoreCase(formatted)) {
                 return i;
             }
         }
@@ -118,6 +131,13 @@ public class MapManager {
 
     public int getLocationCount() {
         return locationCount;
+    }
+
+    public void printValidLocations() {
+        IO.println("Valid places:");
+        for (int i = 0; i < locationCount; i++) {
+            IO.println("- " + locations[i].replace("_", " "));
+        }
     }
 
     public boolean isLoaded() {
