@@ -6,7 +6,7 @@ void main() {
     while (running) {
         IO.println("1. Load the map file");
         IO.println("2. Show all locations in A-to-Z order");
-        IO.println("3. Find a path between 2 places (WIP)");
+        IO.println("3. Find a path between 2 places");
         IO.println("4. Exit");
         IO.println("================================================");
 
