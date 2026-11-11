@@ -121,6 +121,13 @@ public class MapManager {
         return locationCount;
     }
 
+    public void printValidLocations() {
+        IO.println("Valid places:");
+        for (int i = 0; i < locationCount; i++) {
+            IO.println("- " + locations[i].replace("_", " "));
+        }
+    }
+
     public boolean isLoaded() {
         return isLoaded;
     }

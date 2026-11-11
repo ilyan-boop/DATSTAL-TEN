@@ -49,10 +49,12 @@ void main() {
                 // Error handling for wrong place name
                 if (startIdx == -1) {
                     IO.println("Error: Starting place '" + startPlace + "' does not exist on the map.");
+                    mapManager.printValidLocations();
                     break;
                 }
                 if (destIdx == -1) {
                     IO.println("Error: Destination place '" + destPlace + "' does not exist on the map.");
+                    mapManager.printValidLocations();
                     break;
                 }
 
