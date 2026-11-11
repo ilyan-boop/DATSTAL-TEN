@@ -37,6 +37,13 @@ public class MapManager {
                 }
             }
             scanner.close();
+
+            if (locationCount == 0) {
+                IO.println("Error: The map file has no valid locations.");
+                isLoaded = false;
+                return;
+            }
+
             isLoaded = true;
             IO.println("Map file loaded successfully! Total unique "
                     + "locations found: " + locationCount);
