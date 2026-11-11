@@ -32,6 +32,8 @@ public class MapManager {
                 if (parts.length >= 2) {
                     addLocation(parts[0]);
                     addLocation(parts[1]);
+                } else {
+                    IO.println("Warning: Skipping malformed line: " + line);
                 }
             }
             scanner.close();
@@ -74,7 +76,7 @@ public class MapManager {
                 return i;
             }
         }
-        return -1;
+        return -1; // Not found
     }
 
     /*
