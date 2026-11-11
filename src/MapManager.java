@@ -61,6 +61,9 @@ public class MapManager {
         if (locationCount < locations.length) {
             locations[locationCount] = place;
             locationCount++;
+        } else {
+            IO.println("Warning: Map is full (" + locations.length
+                    + " locations). Could not add: " + place);
         }
     }
 
